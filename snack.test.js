@@ -6,3 +6,10 @@ test('La funzione getInitials restituisce le iniziali di un nome completo', () =
     expect(getInitials('gianmarco pippo')).toBe('G' + 'P')
 })
 
+
+// SNACK 2
+const { createSlug } = require('./snacks.js')
+
+test('La funzione createSlug restituisce una stringa in lowercase', () => {
+    expect(createSlug('BUONGIORNO')).toBe('buongiorno')
+})
