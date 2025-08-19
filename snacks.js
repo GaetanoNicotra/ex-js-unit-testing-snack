@@ -11,14 +11,34 @@ function createSlug(stringa) {
 }
 
 
+// SNACK 3
+function average(array) {
+    let sum = array.reduce((acc, n) => acc + n, 0);
+    let media = (sum / (array.length));
+    return media
+}
 
 
+// SNACK 4
+function createSlug2(stringa) {
+    return stringa.split(' ').join('-');
+}
 
+
+// SNACK 5
+function isPalindrome(stringa) {
+    const lettere = stringa.trim().split('');
+    const lettereInverse = stringa.trim().split('').reverse();
+    return lettere.join('') === lettereInverse.join('')
+}
 
 
 
 
 module.exports = {
     getInitials,
-    createSlug
+    createSlug,
+    average,
+    createSlug2,
+    isPalindrome
 }
