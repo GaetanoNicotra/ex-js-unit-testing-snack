@@ -43,3 +43,20 @@ test('La funzione isPalindrome verifica se una stringa è un palindromo', () => 
 test('La funzione createSlug lancia un errore se il titolo è vuoto o non valido', () => {
     expect(() => createSlug('')).toThrow('Titolo non valido')
 })
+
+
+// SNACK 7
+const { findPostById } = require('./snacks.js')
+
+const posts = [
+    { id: 1, title: 'Juventus', slug: 'Squadra Torinese di serie A' },
+    { id: 2, title: 'Milan', slug: 'Squadra Milanese di serie A' },
+    { id: 3, title: 'Roma', slug: 'Squadra Romana di serie A' }
+]
+
+test('La funzione findPostById restituisce il post corretto dato l’array di post e l’id', () => {
+    expect(findPostById(posts, 1)).toEqual({ id: 1, title: 'Juventus', slug: 'Squadra Torinese di serie A' })
+    expect(() => findPostById(posts, "ciao")).toThrow('L\'ID deve essere un numero');
+    expect(() => findPostById([2, 26], 1)).toThrow('L\'array non ha un formato corretto');
+
+})

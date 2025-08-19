@@ -36,12 +36,34 @@ function isPalindrome(stringa) {
 }
 
 
+// SNACK 6
+const posts = [
+    { id: 1, title: 'Juventus', slug: 'Squadra Torinese di serie A' },
+    { id: 2, title: 'Milan', slug: 'Squadra Milanese di serie A' },
+    { id: 3, title: 'Roma', slug: 'Squadra Romana di serie A' }
+]
 
+function findPostById(posts, id) {
+    if (typeof id !== 'number') {
+        throw new Error('L\'ID deve essere un numero');
+    }
+    posts.forEach(p => {
+        if (
+            p.id === undefined ||
+            p.title === undefined ||
+            p.slug === undefined
+        ) {
+            throw new Error('L\'array non ha un formato corretto')
+        }
+    });
+    return posts.find(p => p.id === id) || null;
+}
 
 module.exports = {
     getInitials,
     createSlug,
     average,
     createSlug2,
-    isPalindrome
+    isPalindrome,
+    findPostById
 }
