@@ -22,7 +22,6 @@ test('La funzione average calcola la media aritmetica di un array di numeri', ()
     expect(average([1, 4, 6, 3])).toBe(3.5)
 })
 
-
 // SNACK 4
 const { createSlug2 } = require('./snacks.js')
 
