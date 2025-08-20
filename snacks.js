@@ -23,8 +23,25 @@ function average(array) {
 
 
 // SNACK 4
-function createSlug2(stringa) {
-    return stringa.split(' ').join('-');
+function createSlug2(stringa, posts) {
+    if (!stringa || stringa.trim() === '') {
+        throw new Error('Titolo non valido');
+    }
+
+    let baseSlug = stringa.trim().split(' ').join('-');
+    let slug = baseSlug;
+    let counter = 1;
+
+    if (posts) {
+        const existingSlugs = posts.map(p => p.slug.split(' ').join('-'));
+
+        while (existingSlugs.includes(slug)) {
+            slug = `${baseSlug}-${counter}`;
+            counter++;
+        }
+    }
+
+    return slug;
 }
 
 
@@ -37,12 +54,13 @@ function isPalindrome(stringa) {
 
 
 // SNACK 6
-const posts = [
+let posts = [
     { id: 1, title: 'Juventus', slug: 'Squadra Torinese di serie A' },
     { id: 2, title: 'Milan', slug: 'Squadra Milanese di serie A' },
     { id: 3, title: 'Roma', slug: 'Squadra Romana di serie A' }
 ]
 
+// SNACK 7
 function findPostById(posts, id) {
     if (typeof id !== 'number') {
         throw new Error('L\'ID deve essere un numero');
@@ -59,11 +77,33 @@ function findPostById(posts, id) {
     return posts.find(p => p.id === id) || null;
 }
 
+// SNACK 8 (BONUS)
+function addPost(posts, post) {
+
+    const ids = posts.map(p => p.id)
+    const slugs = posts.map(p => p.slug)
+    if (ids.includes(post.id)) {
+        throw new Error('id già esistente')
+    }
+    if (slugs.includes(post.slug)) {
+        throw new Error('slug già esistente')
+    }
+    posts.push(post)
+}
+
+function removePost(posts, id) {
+    const index = posts.findIndex(p => p.id === id);
+    posts.splice(index, 1)
+}
+
+
 module.exports = {
     getInitials,
     createSlug,
     average,
     createSlug2,
     isPalindrome,
-    findPostById
+    findPostById,
+    addPost,
+    removePost
 }
